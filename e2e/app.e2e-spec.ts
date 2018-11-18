@@ -1,14 +1,19 @@
-import { BlankPage } from './app.po';
+import { DashBoardPage } from './pages/dashBoardPage';
+import { HeroesPage } from './pages/heroesPage';
+import { HeroDetailsPage } from './pages/heroDetalisPage';
 
-describe('blank App', () => {
-  let page: BlankPage;
+describe('Tour of Heroes App', () => {
+  let dashBoardPage: DashBoardPage;
+  let heroesPage: HeroesPage;
+  let heroDetalisPage: HeroDetailsPage;
 
   beforeEach(() => {
-    page = new BlankPage();
+    dashBoardPage = new DashBoardPage();
   });
 
   it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Tour of Heroes');
+    dashBoardPage.navigateTo();
+    expect(dashBoardPage.getParagraphText()).toEqual('Tour of Heroes');
   });
+
 });
