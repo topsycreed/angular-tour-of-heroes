@@ -15,5 +15,23 @@ describe('Tour of Heroes App', () => {
     dashBoardPage.navigateTo();
     expect(dashBoardPage.getParagraphText()).toEqual('Tour of Heroes');
   });
-
+  
+  it('should display top heroes', () => {
+	dashBoardPage.navigateTo();
+	expect(dashBoardPage.getTopHeroesTitleText()).toEqual('Top Heroes');
+  });
+  
+  it('should display hero detail page by top heroes', () => {
+	dashBoardPage.navigateTo();
+	expect(dashBoardPage.getTopHeroesBlocksCount()).toBeGreaterThan(0);
+  });
+  
+  it('should display list of heroes by search', () => {
+	let searchText = 'Narco';
+	  
+	dashBoardPage.navigateTo();
+	dashBoardPage.clickSearchField();
+	dashBoardPage.typeInSearchField(searchText);
+	expect(dashBoardPage.getFirstResultText()).toEqual(searchText);
+  });
 });
