@@ -1,4 +1,5 @@
 import { browser, element, by } from 'protractor';
+import { HeroesPage } from './heroesPage';
 
 export class DashBoardPage {
 	paragraph = element(by.css('my-root h1'));
@@ -6,6 +7,7 @@ export class DashBoardPage {
 	topHeroesBlocks = element.all(by.css('div.module.hero'));
 	searchField = element(by.id('search-box'));
 	searchResult = element.all(by.css('div.search-result'));
+	heroesPageLink = element(by.css("a[routerlink='/heroes']"));
 	
 	navigateTo() {
 		return browser.get('/');
@@ -33,6 +35,11 @@ export class DashBoardPage {
 
 	getFirstResultText () {
 		return this.searchResult.get(0).getText();
+	}
+	
+	openHeroesPage(): HeroesPage {
+		this.heroesPageLink.click();
+		return new HeroesPage();
 	}
 }
 

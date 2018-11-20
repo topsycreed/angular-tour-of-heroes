@@ -12,6 +12,8 @@ exports.config = {
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
+  //turn off control_flow
+  SELENIUM_PROMISE_MANAGER: true,
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
