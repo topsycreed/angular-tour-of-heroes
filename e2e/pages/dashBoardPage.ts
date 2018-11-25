@@ -29,14 +29,15 @@ export class DashBoardPage {
 		return this.getTopHeroes().count();
 	}
 	
-	getTopHeroesNames() {
-		return this.getTopHeroes().map<string>(elem => elem.getText());
-	}
+	/*getTopHeroesNames() {
+		//return this.getTopHeroes().map<string>(elem => elem.getText());
+	}*/
 	
-	//async getTopHeroesNames() {
-		//const elem = element.all(by.css('div.module.hero'));
-		//return Promise.all(elem.map<string>(async row => row.getText()));
-	//}
+	getTopHeroesNames(): Promise<string[]> {
+		const elem: ElementArrayFinder = element.all(by.css('div.module.hero'));
+		let promisedHeroes = elem.map<string>(elem => elem.getText());
+		return <Promise<any>> Promise.all(promisedHeroes);
+	}
 	
 	clickSearchField() {
 		this.searchField.click();
