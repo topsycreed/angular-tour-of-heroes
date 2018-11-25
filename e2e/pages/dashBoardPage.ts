@@ -21,9 +21,22 @@ export class DashBoardPage {
 		return this.topHeroesTitle.getText();
 	}
 	
-	getTopHeroesBlocksCount() {
-		return this.topHeroesBlocks.count();
+	getTopHeroes() {
+		return this.topHeroesBlocks;
 	}
+	
+	getTopHeroesBlocksCount() {
+		return this.getTopHeroes().count();
+	}
+	
+	getTopHeroesNames() {
+		return this.getTopHeroes().map<string>(elem => elem.getText());
+	}
+	
+	//async getTopHeroesNames() {
+		//const elem = element.all(by.css('div.module.hero'));
+		//return Promise.all(elem.map<string>(async row => row.getText()));
+	//}
 	
 	clickSearchField() {
 		this.searchField.click();

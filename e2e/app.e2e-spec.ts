@@ -1,3 +1,4 @@
+import { browser, element, by } from 'protractor';
 import { DashBoardPage } from './pages/dashBoardPage';
 import { HeroesPage } from './pages/heroesPage';
 import { HeroDetailsPage } from './pages/heroDetalisPage';
@@ -11,12 +12,12 @@ describe('Tour of Heroes App', () => {
     dashBoardPage = new DashBoardPage();
   });
   
-  it('should display message saying app works', async () => {
+  it('should display message saying app works', async () => { 
 	await dashBoardPage.navigateTo();
     expect(await dashBoardPage.getParagraphText()).toEqual('Tour of Heroes');
   });
   
-  it('should display top heroes', async () => {
+  it('should display top heroes title', async () => {
 	await dashBoardPage.navigateTo();
 	expect(await dashBoardPage.getTopHeroesTitleText()).toEqual('Top Heroes');
   });
@@ -26,23 +27,16 @@ describe('Tour of Heroes App', () => {
 	expect(await dashBoardPage.getTopHeroesBlocksCount()).toBeGreaterThan(0);
   });
   
-  it('should display list of heroes by search', () => {
-	const searchText = 'Narco';
+  it('should display top heroes blocks', async () => {
+	const heroNames = ["Narco", "Bombasto", "Celeritas", "Magneta"];
 	  
-	dashBoardPage.navigateTo();
-	dashBoardPage.clickSearchField();
-	dashBoardPage.typeInSearchField(searchText);
-	expect(dashBoardPage.getFirstResultText()).toEqual(searchText);
+	await dashBoardPage.navigateTo();
+	expect(await dashBoardPage.getTopHeroesNames()).toEqual(heroNames);
   });
   
-  it('should add new hero', () => {
-	const heroName = 'Test';
-	
-	dashBoardPage.navigateTo();
-	heroesPage = dashBoardPage.openHeroesPage();
-	heroesPage.clickAddNewHeroButton();
-	heroesPage.inputNewHeroName(heroName);
-	heroesPage.saveNewHero();
-	expect(heroesPage.getHeroByNameFromMyHeroes(heroName).isPresent()).toBeTruthy();
+  it('should redirect to dashboard', async () => {
+    dashBoardPage.navigateTo();
+    const url = await browser.getCurrentUrl();
+    expect(url).toContain('/dashboard');
   });
 });

@@ -4,16 +4,11 @@ export class HeroesPage {
 	addNewHeroButton = element(by.buttonText('Add New Hero'));
 	newHeroNameField = element(by.css("input[placeholder='name']"));
 	saveNewHeroButton = element(by.buttonText('Save'));
+	heroesPageLink = element(by.css("a[routerlink='/heroes']"));
 	
-	clickAddNewHeroButton() {
+	addNewHero(name) {
 		this.addNewHeroButton.click();
-	}
-	
-	inputNewHeroName(name) {
 		this.newHeroNameField.sendKeys(name);
-	}
-	
-	saveNewHero() {
 		this.saveNewHeroButton.click();
 	}
 	
