@@ -4,7 +4,7 @@ import { HeroesPage } from './heroesPage';
 export class DashBoardPage {
 	paragraph = element(by.css('my-root h1'));
 	topHeroesTitle = element(by.css('my-dashboard h3'));
-	topHeroesBlocks = element.all(by.css('div.module.hero'));
+	topHeroesBlocks = element.all(by.css('.module.hero'));
 	searchField = element(by.id('search-box'));
 	searchResult = element.all(by.css('div.search-result'));
 	heroesPageLink = element(by.css("a[routerlink='/heroes']"));
@@ -29,15 +29,15 @@ export class DashBoardPage {
 		return this.getTopHeroes().count();
 	}
 	
-	/*getTopHeroesNames() {
-		//return this.getTopHeroes().map<string>(elem => elem.getText());
-	}*/
+	getTopHeroesNames() {
+		return this.getTopHeroes().map<string>(elem => elem.getText());
+	}
 	
-	getTopHeroesNames(): Promise<string[]> {
-		const elem: ElementArrayFinder = element.all(by.css('div.module.hero'));
+	/*getTopHeroesNames(): Promise<string[]> {
+		const elem: ElementArrayFinder = this.topHeroesBlocks;
 		let promisedHeroes = elem.map<string>(elem => elem.getText());
 		return <Promise<any>> Promise.all(promisedHeroes);
-	}
+	}*/
 	
 	clickSearchField() {
 		this.searchField.click();
